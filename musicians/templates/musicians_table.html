@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- musicians/templates/combined_data.html -->
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Musician Name</th>
+          <th>Email</th>
+          <th>Album Rating</th>
+          <th>Instrument Type</th>
+          <th>Album Name</th>
+          <th>Release Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in combined_data %}
+        <tr>
+          <td>{{ data.id }}</td>
+          <td>
+            <a href="{% url 'edit_musician' data.id  %}"
+              >{{ data.musician_name }}</a
+            >
+          </td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.album_rating }}</td>
+          <td>{{ data.instrument_type }}</td>
+          <td>{{ data.album_name }}</td>
+          <td>{{ data.release_date|date:"d-M-Y" }}</td>
+          <td>
+            <a href="{% url 'edit_musician' data.id  %}">Edit</a>
+            <a href="{% url 'delete_music' data.id  %}">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
